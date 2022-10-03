@@ -12,12 +12,9 @@ const server=express();
 server.use(express.json());
 
 const { Pool }= pg;
-const connection= new Pool ({
-    host: 'localhost',
-    port: '5432',
-    user: 'postgres',
-    password: '1234',
-    database: 'boardcamp'
+
+const connection = new Pool({
+    connectionString: process.env.DATABASE_URL,
 });
 export {connection}
 
@@ -36,4 +33,4 @@ server.put("/customers/:id",validationUser,putCustumers);
 server.get("/rentals",getRentals);
 server.post("/rentals",postRentals);
 
-server.listen(5000,()=>{console.log("escutando porta 5000 trocar pra 4000 dps")});
+server.listen(4000,()=>{console.log("escutando porta 4000")});
